@@ -1,0 +1,6 @@
+@DHI_Challenges.Services_HostAddress = http://localhost:5294
+
+GET {{DHI_Challenges.Services_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

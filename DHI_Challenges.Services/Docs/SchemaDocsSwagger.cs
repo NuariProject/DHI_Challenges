@@ -16,7 +16,7 @@ namespace DHI_Challenges.Services.Docs
                 {
                     ["statusCode"] = new OpenApiInteger(StatusCodes.Status200OK),
                     ["message"] = new OpenApiString(Message.SUCCESS),
-                    ["data"] = new OpenApiArray { new OpenApiString("Detail Data") }
+                    ["data"] = new OpenApiArray { new OpenApiString(Message.TEXT_OA_DATA) }
                 };
             }
             else if (context.Type == typeof(ResponseErrorDto))
@@ -26,7 +26,7 @@ namespace DHI_Challenges.Services.Docs
                     ["statusCode"] = new OpenApiInteger(StatusCodes.Status404NotFound),
                     ["message"] = new OpenApiString(Message.DATA_NOT_FOUND),
                     ["data"] = new OpenApiString(null),
-                    ["errors"] = new OpenApiArray { new OpenApiString("Detail Errors") }
+                    ["errors"] = new OpenApiArray { new OpenApiString(Message.TEXT_OA_ERROR) }
                 };
             }
             else if (context.Type == typeof(ResponseExceptionDto))
@@ -36,7 +36,7 @@ namespace DHI_Challenges.Services.Docs
                     ["statusCode"] = new OpenApiInteger(StatusCodes.Status500InternalServerError),
                     ["message"] = new OpenApiString(Message.VALIDATION_ERROR),
                     ["data"] = new OpenApiString(null),
-                    ["tracerId"] = new OpenApiString("Specific tracer id")
+                    ["tracerId"] = new OpenApiString(Message.TEXT_OA_TRACER)
                 };
 
             }

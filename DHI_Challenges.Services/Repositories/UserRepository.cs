@@ -11,6 +11,7 @@ namespace DHI_Challenges.Services.Repositories
         {
             _context = contexts;
         }
+
         public void Update(MasterUser user)
         {
             _context.Update(user);

@@ -23,7 +23,7 @@ namespace DHI_Challenges.Services.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult GetAll()
         {
-            List<MasterUser> objList = _unitOfWork.User.GetAll().ToList();
+            List<MasterUser> objList = _unitOfWork.User.GetAll(ss => ss.IsDelete == false).ToList();
 
             _objResponse = new()
             {
@@ -41,7 +41,7 @@ namespace DHI_Challenges.Services.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult Get(int id)
         {
-            MasterUser obj = _unitOfWork.User.Get(ss => ss.UserID == id);
+            MasterUser obj = _unitOfWork.User.Get(ss => ss.IsDelete == false && ss.UserID == id);
 
             if (obj == null)
             {
@@ -77,7 +77,7 @@ namespace DHI_Challenges.Services.Controllers
             _unitOfWork.Save();
 
 
-            MasterUser objList = _unitOfWork.User.Get(ss => ss.UserID == obj.UserID);
+            MasterUser objList = _unitOfWork.User.Get(ss => ss.IsDelete == false && ss.UserID == obj.UserID);
             _objResponse = new()
             {
                 StatusCode = StatusCodes.Status200OK,
@@ -94,7 +94,7 @@ namespace DHI_Challenges.Services.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult Put(int id, [FromBody] RequestUserDto value)
         {
-            MasterUser obj = _unitOfWork.User.Get(ss => ss.UserID == id);
+            MasterUser obj = _unitOfWork.User.Get(ss => ss.IsDelete == false && ss.UserID == id);
 
             if (obj == null)
             {
@@ -129,7 +129,7 @@ namespace DHI_Challenges.Services.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult Delete(int id)
         {
-            MasterUser obj = _unitOfWork.User.Get(ss => ss.UserID == id);
+            MasterUser obj = _unitOfWork.User.Get(ss => ss.IsDelete == false && ss.UserID == id);
 
             if (obj == null)
             {
@@ -141,6 +141,8 @@ namespace DHI_Challenges.Services.Controllers
 
                 return NotFound(_objResponse);
             }
+
+            obj.IsDelete = false;
 
             _objResponse = new()
             {

@@ -2,7 +2,11 @@
 {
     public interface IUnitOfWork
     {
+        #region Register Other Repository
         IUserRepository User { get; }
+        IProductRepository Product{ get; }
+        #endregion
+
         void Save();
         void BeginTransaction();
         void CommitTransaction();

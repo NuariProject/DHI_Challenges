@@ -7,6 +7,7 @@ namespace DHI_Challenges.Services.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         public IUserRepository User { get; private set; }
+        public IProductRepository Product { get; private set; }
 
         private DHIContexts _context;
         private IDbContextTransaction _transaction;
@@ -15,6 +16,7 @@ namespace DHI_Challenges.Services.Repositories
         {
             _context = context;
             User = new UserRepository(_context);
+            Product = new ProductRepository(_context);
         }
 
         public void Save()

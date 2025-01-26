@@ -18,5 +18,8 @@ namespace DHI_Challenges.Models.Entities
         [MaxLength(15)]
         [MinLength(10)]
         public string PhoneNumber { get; set; } = string.Empty;
+
+        [Required]
+        public bool IsDelete { get; set; }
     }
 }

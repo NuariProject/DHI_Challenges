@@ -16,6 +16,9 @@ namespace DHI_Challenges.Models.Entities
         [Required]
         public DateTime CreateDate { get; set; }
 
+        [Required]
+        public bool IsDelete { get; set; }
+
         [ForeignKey("UserID")]
         public MasterUser MasterUsers { get; set; }
     }

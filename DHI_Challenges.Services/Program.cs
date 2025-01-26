@@ -1,6 +1,11 @@
+using DHI_Challenges.Services.Infrastructures;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<DHIContexts>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("dhi_connect")));
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

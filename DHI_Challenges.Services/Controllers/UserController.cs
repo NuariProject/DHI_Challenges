@@ -76,8 +76,8 @@ namespace DHI_Challenges.Services.Controllers
             _unitOfWork.User.Add(obj);
             _unitOfWork.Save();
 
-
             MasterUser objList = _unitOfWork.User.Get(ss => ss.IsDelete == false && ss.UserID == obj.UserID);
+
             _objResponse = new()
             {
                 StatusCode = StatusCodes.Status200OK,

@@ -1,4 +1,5 @@
 ﻿using DHI_Challenges.Models.DataTransferObject;
+using System.Text.Json;
 
 namespace DHI_Challenges.Services.MiddleWares
 {
@@ -15,7 +16,6 @@ namespace DHI_Challenges.Services.MiddleWares
 
         public async Task Invoke(HttpContext context)
         {
-            string tracerId = context.Items["TracerId"]?.ToString() ?? Guid.NewGuid().ToString();
 
             try
             {
@@ -23,6 +23,8 @@ namespace DHI_Challenges.Services.MiddleWares
             }
             catch (Exception ex)
             {
+                string tracerId = context.Items["TracerId"]?.ToString() ?? Guid.NewGuid().ToString();
+
                 // Log the exception
                 _logger.LogError($"TracerId: {tracerId}, Error: {ex.Message}");
 
@@ -37,7 +39,7 @@ namespace DHI_Challenges.Services.MiddleWares
                     TracerId = tracerId
                 };
 
-                await context.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(response));
+                await context.Response.WriteAsync(JsonSerializer.Serialize(response));
             }
         }
     }

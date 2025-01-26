@@ -19,8 +19,8 @@ namespace DHI_Challenges.Services.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResponseGlobalDto))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult GetAll()
         {
             List<MasterUser> objList = _unitOfWork.User.GetAll().ToList();
@@ -36,9 +36,9 @@ namespace DHI_Challenges.Services.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResponseGlobalDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseErrorDto))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult Get(int id)
         {
             MasterUser obj = _unitOfWork.User.Get(ss => ss.UserID == id);
@@ -65,8 +65,8 @@ namespace DHI_Challenges.Services.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResponseGlobalDto))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult Create([FromBody] RequestUserDto value)
         {
             MasterUser obj = new();
@@ -89,9 +89,9 @@ namespace DHI_Challenges.Services.Controllers
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResponseGlobalDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseErrorDto))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult Put(int id, [FromBody] RequestUserDto value)
         {
             MasterUser obj = _unitOfWork.User.Get(ss => ss.UserID == id);
@@ -124,9 +124,9 @@ namespace DHI_Challenges.Services.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResponseGlobalDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseErrorDto))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseExceptionDto))]
         public IActionResult Delete(int id)
         {
             MasterUser obj = _unitOfWork.User.Get(ss => ss.UserID == id);

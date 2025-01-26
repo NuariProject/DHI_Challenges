@@ -21,6 +21,14 @@ namespace DHI_Challenges.Services.Repositories
             dbSet.Add(entity);
         }
 
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter)
+        {
+            IQueryable<T> query = dbSet;
+            query = query.Where(filter);
+
+            return query.ToList();
+        }
+
         public IEnumerable<T> GetAll()
         {
             IQueryable<T> query = dbSet;

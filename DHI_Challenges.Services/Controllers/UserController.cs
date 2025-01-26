@@ -136,13 +136,16 @@ namespace DHI_Challenges.Services.Controllers
                 _objResponse = new()
                 {
                     StatusCode = StatusCodes.Status404NotFound,
-                    Message = Message.SUCCESS
+                    Message = Message.DATA_NOT_FOUND
                 };
 
                 return NotFound(_objResponse);
             }
 
             obj.IsDelete = true;
+
+            _unitOfWork.User.Update(obj);
+            _unitOfWork.Save();
 
             _objResponse = new()
             {

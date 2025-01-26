@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace DHI_Challenges.Models.Entities
 {
@@ -20,6 +21,7 @@ namespace DHI_Challenges.Models.Entities
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
+        [JsonIgnore]
         public bool IsDelete { get; set; }
     }
 }

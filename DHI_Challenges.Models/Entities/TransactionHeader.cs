@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace DHI_Challenges.Models.Entities
 {
@@ -17,6 +18,7 @@ namespace DHI_Challenges.Models.Entities
         public DateTime CreateDate { get; set; }
 
         [Required]
+        [JsonIgnore]
         public bool IsDelete { get; set; }
 
         [ForeignKey("UserID")]

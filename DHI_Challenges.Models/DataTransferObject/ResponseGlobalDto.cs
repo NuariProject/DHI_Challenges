@@ -12,8 +12,5 @@ namespace DHI_Challenges.Models.DataTransferObject
 
         [JsonPropertyOrder(3)]
         public dynamic Data { get; set; }
-
-        [JsonPropertyOrder(4)]
-        public dynamic Errors { get; set; }
     }
 }

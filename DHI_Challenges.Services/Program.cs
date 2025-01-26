@@ -1,4 +1,5 @@
 using DHI_Challenges.Models.DataTransferObject;
+using DHI_Challenges.Services.Docs;
 using DHI_Challenges.Services.Infrastructures;
 using DHI_Challenges.Services.MiddleWares;
 using DHI_Challenges.Services.Repositories;
@@ -6,6 +7,7 @@ using DHI_Challenges.Services.Repositories.IRepositories;
 using DHI_Challenges.Services.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +40,17 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
         return new BadRequestObjectResult(response);
     };
+});
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "DHI Challenge API",
+        Version = "v1"
+    });
+
+    options.SchemaFilter<SchemaDocsSwagger>();
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -4,6 +4,7 @@ using DHI_Challenges.Services.Infrastructures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DHI_Challenges.Services.Migrations
 {
     [DbContext(typeof(DHIContexts))]
-    partial class DHIContextsModelSnapshot : ModelSnapshot
+    [Migration("20250126151006_Add IsDelete")]
+    partial class AddIsDelete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

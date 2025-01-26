@@ -2,6 +2,7 @@
 {
     public interface IUnitOfWork
     {
+        IUserRepository User { get; }
         void Save();
         void BeginTransaction();
         void CommitTransaction();

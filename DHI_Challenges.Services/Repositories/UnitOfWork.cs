@@ -2,16 +2,19 @@
 using DHI_Challenges.Services.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace DHI_Challanges.Services.Repositories
+namespace DHI_Challenges.Services.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
+        public IUserRepository User { get; private set; }
+
         private DHIContexts _context;
         private IDbContextTransaction _transaction;
 
         public UnitOfWork(DHIContexts context)
         {
             _context = context;
+            User = new UserRepository(_context);
         }
 
         public void Save()

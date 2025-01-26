@@ -1,6 +1,7 @@
 ﻿using DHI_Challenges.Models.DataTransferObject;
 using DHI_Challenges.Models.Entities;
 using DHI_Challenges.Services.Repositories.IRepositories;
+using DHI_Challenges.Services.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DHI_Challenges.Services.Controllers
@@ -11,12 +12,10 @@ namespace DHI_Challenges.Services.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private ResponseGlobalDto _objResponse;
-        private ResponseErrorDto _objResponseError;
         public UserController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _objResponse = new();
-            _objResponseError = new();
         }
 
         [HttpGet]
@@ -29,7 +28,7 @@ namespace DHI_Challenges.Services.Controllers
             _objResponse = new()
             {
                 StatusCode =  StatusCodes.Status200OK,
-                Message = objList != null ? "Success" : "Data not exist",
+                Message = objList != null ? Message.SUCCESS : Message.DATA_NOT_EXIST,
                 Data = objList
             };
 
@@ -49,7 +48,7 @@ namespace DHI_Challenges.Services.Controllers
                 _objResponse = new()
                 {
                     StatusCode = StatusCodes.Status404NotFound,
-                    Message = "Data not found"
+                    Message = Message.DATA_NOT_FOUND
                 };
 
                 return NotFound(_objResponse);
@@ -58,7 +57,7 @@ namespace DHI_Challenges.Services.Controllers
             _objResponse = new()
             {
                 StatusCode = StatusCodes.Status200OK,
-                Message = "Success",
+                Message = Message.SUCCESS,
                 Data = obj
             };
 
@@ -82,7 +81,7 @@ namespace DHI_Challenges.Services.Controllers
             _objResponse = new()
             {
                 StatusCode = StatusCodes.Status200OK,
-                Message = "Success",
+                Message = Message.SUCCESS,
                 Data = _unitOfWork.User.Get(ss => ss.UserID == obj.UserID)
             };
 
@@ -102,7 +101,7 @@ namespace DHI_Challenges.Services.Controllers
                 _objResponse = new()
                 {
                     StatusCode = StatusCodes.Status404NotFound,
-                    Message = "Data not found"
+                    Message = Message.DATA_NOT_FOUND
                 };
 
                 return NotFound(_objResponse);
@@ -117,7 +116,7 @@ namespace DHI_Challenges.Services.Controllers
             _objResponse = new()
             {
                 StatusCode = StatusCodes.Status200OK,
-                Message = "Success",
+                Message = Message.SUCCESS,
                 Data = obj
             };
 
@@ -137,7 +136,7 @@ namespace DHI_Challenges.Services.Controllers
                 _objResponse = new()
                 {
                     StatusCode = StatusCodes.Status404NotFound,
-                    Message = "Data not found"
+                    Message = Message.SUCCESS
                 };
 
                 return NotFound(_objResponse);
@@ -146,7 +145,7 @@ namespace DHI_Challenges.Services.Controllers
             _objResponse = new()
             {
                 StatusCode = StatusCodes.Status200OK,
-                Message = "Success"
+                Message = Message.SUCCESS
             };
 
             return Ok(_objResponse);

@@ -3,6 +3,7 @@ using DHI_Challenges.Services.Infrastructures;
 using DHI_Challenges.Services.MiddleWares;
 using DHI_Challenges.Services.Repositories;
 using DHI_Challenges.Services.Repositories.IRepositories;
+using DHI_Challenges.Services.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,7 +32,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
         ResponseErrorDto response = new()
         {
             StatusCode = StatusCodes.Status400BadRequest,
-            Message = "Validation failed",
+            Message = Message.VALIDATION_ERROR,
             Errors = errors
         };
 

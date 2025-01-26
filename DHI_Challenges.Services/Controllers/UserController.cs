@@ -142,7 +142,7 @@ namespace DHI_Challenges.Services.Controllers
                 return NotFound(_objResponse);
             }
 
-            obj.IsDelete = false;
+            obj.IsDelete = true;
 
             _objResponse = new()
             {

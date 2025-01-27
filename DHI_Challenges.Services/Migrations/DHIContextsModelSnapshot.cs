@@ -89,6 +89,9 @@ namespace DHI_Challenges.Services.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("DetailID");
 
                     b.HasIndex("HeaderID");
@@ -111,6 +114,9 @@ namespace DHI_Challenges.Services.Migrations
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
+
+                    b.Property<int>("SummaryQuantity")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");

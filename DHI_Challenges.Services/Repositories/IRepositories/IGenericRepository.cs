@@ -8,6 +8,7 @@ namespace DHI_Challenges.Services.Repositories.IRepositories
         IEnumerable<T> GetAll(Expression<Func<T, bool>> filter);
         T Get(Expression<Func<T, bool>> filter);
         void Add(T entity);
+        void AddRange(IEnumerable<T> entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
     }

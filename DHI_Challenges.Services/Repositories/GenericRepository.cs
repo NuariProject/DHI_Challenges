@@ -20,6 +20,10 @@ namespace DHI_Challenges.Services.Repositories
         {
             dbSet.Add(entity);
         }
+        public void AddRange(IEnumerable<T> entity)
+        {
+            dbSet.AddRange(entity);
+        }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter)
         {

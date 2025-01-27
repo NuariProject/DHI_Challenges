@@ -15,6 +15,9 @@ namespace DHI_Challenges.Models.Entities
         public int UserID { get; set; }
 
         [Required]
+        public int SummaryQuantity { get; set; }
+
+        [Required]
         public DateTime CreateDate { get; set; }
 
         [Required]

@@ -5,6 +5,8 @@
         #region Register Other Repository
         IUserRepository User { get; }
         IProductRepository Product{ get; }
+        IHeaderRepository Header { get; }
+        IDetailRepository Detail { get; }
         #endregion
 
         void Save();

@@ -8,6 +8,8 @@ namespace DHI_Challenges.Services.Repositories
     {
         public IUserRepository User { get; private set; }
         public IProductRepository Product { get; private set; }
+        public IHeaderRepository Header { get; private set; }
+        public IDetailRepository Detail { get; private set; }
 
         private DHIContexts _context;
         private IDbContextTransaction _transaction;
@@ -17,6 +19,8 @@ namespace DHI_Challenges.Services.Repositories
             _context = context;
             User = new UserRepository(_context);
             Product = new ProductRepository(_context);
+            Header = new HeaderRepository(_context);
+            Detail = new DetailRepository(_context);
         }
 
         public void Save()
